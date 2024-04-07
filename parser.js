@@ -1,13 +1,13 @@
 var zekalje={
   parse:function(input) {
-    //<p>태그
+    //<p> 태그(舊)
     //input=input.replace(/(?=(?:\n\n)|^)([^#\n ]+)(?=(?:\n#+ [^ ]))||(?<=(?:#+ [^ ]+\n))([^#\n ]+)(?=(?:\n\n)|$)||(?<=(?:\n\n))([^\n ]+)(?=(?:\n\n))/g,'<p>$1</p>');
+    //***굵고 기울어진 글씨***
+    input=input.replace(/\*\*\*([^\*\n]+)\*\*\*/g,'<b><i>$1</i></b>');
     //**굵은 글씨**
     input=input.replace(/\*\*([^\*\n]+)\*\*/g,'<b>$1</b>');
     //*기울어진 글씨*
     input=input.replace(/\*([^\*\n]+)\*/g,'<i>$1</i>');
-    //***굵고 기울어진 글씨***
-    input=input.replace(/\*\*\*([^\*\n]+)\*\*\*/g,'<b><i>$1</i></b>');
     //%하이라이트%
     input=input.replace(/\%([^\%\n]+)\%/g,'<mark>$1</mark>');
     //+윗줄+
@@ -35,7 +35,7 @@ var zekalje={
     //(P-진행률)
     input=input.replace(/\(P-([0-9]{1,2}|100)\)/,'<progress max="100" value="$1">$1%</progress>');
     //* 리스트
-    input.replace(/(?<=\n|^)(\*+ .+\n)+(?=(?:[^\*]|\*+\S|$))/g, function(match){
+    input=input.replace(/(?<=\n|^)(\*+ .+\n)+(?=(?:[^\*]|\*+\S|$))/g, function(match){
       var lines=match.trim().split('\n');
       var result='';
       var stack=[];
